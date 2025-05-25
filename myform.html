@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVEX - Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        
+        .progress-step {
+            position: relative;
+        }
+        
+        .progress-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: #334155;
+            z-index: 1;
+        }
+        
+        .progress-step.active:not(:last-child):after {
+            background-color: #3b82f6;
+        }
+        
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        
+        .checkbox-container .checkmark:after {
+            content: '';
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-2xl px-6 py-3 rounded-lg">
+                INVEX
+            </div>
+        </div>
+        
+        <!-- Progress Steps -->
+        <div class="flex justify-between items-center mb-10 relative">
+            <div class="progress-step active">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold relative z-10">
+                    1
+                </div>
+                <p class="text-xs mt-2 text-blue-500 font-medium text-center">Register Mobile</p>
+            </div>
+            
+            <div class="progress-step">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-semibold relative z-10">
+                    2
+                </div>
+                <p class="text-xs mt-2 text-slate-400 font-medium text-center">Complete Account</p>
+            </div>
+            
+            <div class="progress-step">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-semibold relative z-10">
+                    3
+                </div>
+                <p class="text-xs mt-2 text-slate-400 font-medium text-center">Confirm Mobile</p>
+            </div>
+        </div>
+        
+        <!-- Form Container -->
+        <div class="bg-slate-800 rounded-xl shadow-xl overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-white mb-6">Register Mobile Number</h2>
+                
+                <form id="registrationForm">
+                    <!-- Mobile Number -->
+                    <div class="mb-5">
+                        <label for="mobile" class="block text-sm font-medium text-slate-300 mb-2">Mobile Number *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fas fa-phone text-slate-400"></i>
+                            </div>
+                            <input type="tel" id="mobile" class="input-field bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-3" placeholder="+1 (___) ___-____" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Email (Optional) -->
+                    <div class="mb-5">
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email (Optional)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fas fa-envelope text-slate-400"></i>
+                            </div>
+                            <input type="email" id="email" class="input-field bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-3" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    
+                    <!-- Referral Code (Optional) -->
+                    <div class="mb-5">
+                        <label for="referral" class="block text-sm font-medium text-slate-300 mb-2">Referral Code (Optional)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fas fa-user-friends text-slate-400"></i>
+                            </div>
+                            <input type="text" id="referral" class="input-field bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-3" placeholder="Enter referral code">
+                        </div>
+                    </div>
+                    
+                    <!-- Terms Checkbox -->
+                    <div class="mb-6">
+                        <label class="checkbox-container block relative text-sm text-slate-300 pl-8 cursor-pointer select-none">
+                            <input type="checkbox" class="absolute opacity-0 cursor-pointer h-0 w-0" required>
+                            <span class="checkmark absolute top-0 left-0 h-5 w-5 bg-slate-700 border border-slate-600 rounded"></span>
+                            I agree to the <a href="#" class="text-blue-400 hover:underline">Terms and Conditions</a>
+                        </label>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg py-3 px-4 hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <span id="buttonText">Complete Registration</span>
+                        <i id="buttonSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                    </button>
+                </form>
+                
+                <!-- Already Registered Link -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-slate-400">
+                        Already registered? 
+                        <a href="#" class="text-blue-400 font-medium hover:underline">Log in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="mt-6 text-center">
+            <p class="text-xs text-slate-500">© 2023 INVEX. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const buttonText = document.getElementById('buttonText');
+            const buttonSpinner = document.getElementById('buttonSpinner');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            buttonText.textContent = 'Processing...';
+            buttonSpinner.classList.remove('hidden');
+            submitBtn.classList.add('opacity-75');
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button state
+                submitBtn.disabled = false;
+                buttonText.textContent = 'Complete Registration';
+                buttonSpinner.classList.add('hidden');
+                submitBtn.classList.remove('opacity-75');
+                
+                // Show success (in a real app, you would redirect or show a success message)
+                alert('Registration successful! Please check your mobile for verification code.');
+            }, 2000);
+        });
+        
+        // Format phone number input
+        document.getElementById('mobile').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '+' + x[1] + ' (' + x[2] + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '');
+        });
+    </script>
+</body>
+</html>
